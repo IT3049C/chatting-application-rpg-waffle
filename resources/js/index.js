@@ -37,6 +37,28 @@ function formatMessage(message, myNameInput) {
 
 
   // Function fetchMessages():
+  function fetchMessages() {
+    return [
+      {
+        id: 1,
+        text: "What's up team?",
+        sender: "John M.",
+        timestamp: 1537410673072
+      },
+      {
+        id: 2,
+        text: "Is this the right group chat?",
+        sender: "James H.",
+        timestamp: 1537410673072
+      },
+      {
+        id: 3,
+        text: "LOL How do I get out.",
+        sender: "Parker V.",
+        timestamp: 1537410673072
+      }
+    ];
+  }
 
   // Function updateMessagesInChatBox():
 
