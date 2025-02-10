@@ -74,9 +74,9 @@ function formatMessage(message, myNameInput) {
 
 // Sending Messages:
 
-  // Function send
+  // Send Function
   function send(sender, text, timestamp){
-    let myMessage = {"name":sender, "text":text, "timestamp":1537410673072}
+    let myMessage = {"name":sender, "text":text, "timestamp":1537410673072};
   }
 
   // Send Button Event Listener
