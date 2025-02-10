@@ -75,5 +75,15 @@ function formatMessage(message, myNameInput) {
 // Sending Messages:
 
   // Function send
+  function send(sender, text, timestamp){
+    let myMessage = {"name":sender, "text":text, "timestamp":1537410673072}
+  }
 
   // Send Button Event Listener
+  sendButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    const sender = nameInput.value;
+    const message = myMessage.value;
+    sendMessages(sender, message);
+    myMessage.value = "";
+  });
