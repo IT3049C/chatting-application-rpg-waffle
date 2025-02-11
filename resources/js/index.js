@@ -7,53 +7,58 @@
   const chatBox = document.getElementById(`chat`); 
 
   // Function formatMessage():
-function formatMessage(message, myNameInput) {
-  const time = new Date(message.timestamp);
-  const formattedTime = `${time.getHours()}:${time.getMinutes()}`;
-  if (myNameInput === message.sender) {
-    return `
-      <div class="mine messages">
-        <div class="message">
-          ${message.text}
+  function formatMessage(message, myNameInput) {
+    const time = new Date(message.timestamp);
+    const formattedTime = `${time.getHours()}:${time.getMinutes()}`;
+  
+    if (myNameInput === message.sender) {
+      return `
+        <div class="mine messages">
+          <div class="message">
+            ${message.text}
+          </div>
+          <div class="sender-info">
+            ${formattedTime}
+          </div>
         </div>
-        <div class="sender-info">
-          ${formattedTime}
+      `;
+    } else {
+      return `
+        <div class="yours messages">
+          <div class="message">
+            ${message.text}
+          </div>
+          <div class="sender-info">
+            ${message.sender} ${formattedTime}
+          </div>
         </div>
-      </div>
-    `;
-  } else {
-    return `
-      <div class="yours messages">
-        <div class="message">
-          ${message.text}
-        </div>
-        <div class="sender-info">
-          ${message.sender} ${formattedTime}
-        </div>
-      </div>
-    `;
+      `;
+    }
   }
-}
 
 
   // Function fetchMessages():
   const serverURL = `https://it3049c-chat.fly.dev/messages`;
 
-  function fetchMessages() {
-    return fetch(serverURL)
-      .then(response => response.json());
-  }
+async function fetchMessages() {
+  const response = await fetch(serverURL);
+  return response.json();
+}
 
   // Function updateMessagesInChatBox():
   async function updateMessages() {
     const messages = await fetchMessages();
+    if (!Array.isArray(messages)) {
+      console.error("Fetched messages are not an array", messages);
+      return;
+    }
     let formattedMessages = "";
-    messages.forEach(message => {
+    for (const message of messages) {
       formattedMessages += formatMessage(message, nameInput.value);
-    });
+    }
     chatBox.innerHTML = formattedMessages;
   }
-  updateMessages();
+
   const MILLISECONDS_IN_TEN_SECONDS = 10000;
   setInterval(updateMessages, MILLISECONDS_IN_TEN_SECONDS);
   
