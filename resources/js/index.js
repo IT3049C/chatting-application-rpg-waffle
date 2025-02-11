@@ -94,4 +94,5 @@ function formatMessage(message, myNameInput) {
       formattedMessages += formatMessage(message, nameInput.value);
     });
     chatBox.innerHTML = formattedMessages;
-  }  
+  }
+  updateMessages();
