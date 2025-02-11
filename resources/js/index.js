@@ -85,3 +85,13 @@ function formatMessage(message, myNameInput) {
     sendMessages(sender, message);
     myMessage.value = "";
   });
+
+  //Update Messages
+  function updateMessages() {
+    const messages = fetchMessages();
+    let formattedMessages = "";
+    messages.forEach(message => {
+      formattedMessages += formatMessage(message, nameInput.value);
+    });
+    chatBox.innerHTML = formattedMessages;
+  }  
