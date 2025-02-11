@@ -62,20 +62,20 @@ function formatMessage(message, myNameInput) {
 
   // Send Function
   function sendMessages(username, text) {
-    const newMessage = {
-      sender: username,
-      text: text,
-      timestamp: new Date()
-    };
-  
-    fetch(serverURL, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newMessage)
-    });
-  }
+  const newMessage = {
+    sender: username,
+    text: text,
+    timestamp: new Date()
+  };
+
+  fetch(serverURL, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newMessage)
+  });
+}
 
   // Send Button Event Listener
   sendButton.addEventListener("click", function(event) {
